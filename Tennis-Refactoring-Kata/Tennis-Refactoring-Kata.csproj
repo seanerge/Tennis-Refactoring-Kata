@@ -54,8 +54,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tennis\ITennisGame.cs" />
     <Compile Include="Tennis\TennisGame1.cs" />
-    <Compile Include="Tennis\TennisGame2.cs" />
-    <Compile Include="Tennis\TennisGame3.cs" />
     <Compile Include="Tennis\TennisTests.cs" />
   </ItemGroup>
   <ItemGroup>

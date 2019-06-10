@@ -56,19 +56,19 @@ namespace Tennis
             CheckAllScores(game);
         }
 
-        [Test]
-        public void CheckTennisGame2()
-        {
-            var game = new TennisGame2("player1", "player2");
-            CheckAllScores(game);
-        }
+        ////[Test]
+        ////public void CheckTennisGame2()
+        ////{
+        ////    var game = new TennisGame2("player1", "player2");
+        ////    CheckAllScores(game);
+        ////}
 
-        [Test]
-        public void CheckTennisGame3()
-        {
-            var game = new TennisGame3("player1", "player2");
-            CheckAllScores(game);
-        }
+        ////[Test]
+        ////public void CheckTennisGame3()
+        ////{
+        ////    var game = new TennisGame3("player1", "player2");
+        ////    CheckAllScores(game);
+        ////}
 
         private void CheckAllScores(ITennisGame game)
         {
@@ -95,19 +95,19 @@ namespace Tennis
             RealisticTennisGame(game);
         }
 
-        [Test]
-        public void CheckGame2()
-        {
-            var game = new TennisGame2("player1", "player2");
-            RealisticTennisGame(game);
-        }
+        ////[Test]
+        ////public void CheckGame2()
+        ////{
+        ////    var game = new TennisGame2("player1", "player2");
+        ////    RealisticTennisGame(game);
+        ////}
 
-        [Test]
-        public void CheckGame3()
-        {
-            var game = new TennisGame3("player1", "player2");
-            RealisticTennisGame(game);
-        }
+        ////[Test]
+        ////public void CheckGame3()
+        ////{
+        ////    var game = new TennisGame3("player1", "player2");
+        ////    RealisticTennisGame(game);
+        ////}
 
         private void RealisticTennisGame(ITennisGame game)
         {
