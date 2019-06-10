@@ -1,6 +1,6 @@
 namespace Tennis
 {
-    class TennisGame1 : ITennisGame
+    internal class TennisGame1 : ITennisGame
     {
         private int m_score1 = 0;
         private int m_score2 = 0;
@@ -57,16 +57,18 @@ namespace Tennis
                 case 0:
                     score = "Love-All";
                     break;
+
                 case 1:
                     score = "Fifteen-All";
                     break;
+
                 case 2:
                     score = "Thirty-All";
                     break;
+
                 default:
                     score = "Deuce";
                     break;
-
             }
 
             return score;
@@ -74,31 +76,34 @@ namespace Tennis
 
         private string GetOtherScore()
         {
-            var score = "";
-            int tempScore = 0;
-            for (var i = 1; i < 3; i++)
+            string scoreName1 = ConvertScorePointToName(m_score1);
+            string scoreName2 = ConvertScorePointToName(m_score2);
+            return $"{scoreName1}-{scoreName2}";
+        }
+
+        private string ConvertScorePointToName(int point)
+        {
+            string scoreName = "";
+            switch (point)
             {
-                if (i == 1) tempScore = m_score1;
-                else { score += "-"; tempScore = m_score2; }
-                switch (tempScore)
-                {
-                    case 0:
-                        score += "Love";
-                        break;
-                    case 1:
-                        score += "Fifteen";
-                        break;
-                    case 2:
-                        score += "Thirty";
-                        break;
-                    case 3:
-                        score += "Forty";
-                        break;
-                }
+                case 0:
+                    scoreName = "Love";
+                    break;
+
+                case 1:
+                    scoreName = "Fifteen";
+                    break;
+
+                case 2:
+                    scoreName = "Thirty";
+                    break;
+
+                case 3:
+                    scoreName = "Forty";
+                    break;
             }
 
-            return score;
+            return scoreName;
         }
     }
 }
-
