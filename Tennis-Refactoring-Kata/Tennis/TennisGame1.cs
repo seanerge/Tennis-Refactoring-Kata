@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Tennis
 {
@@ -25,6 +26,9 @@ namespace Tennis
 
         public string GetScore()
         {
+            m_score1 = m_score1 >= 0 ? m_score1 : 0;
+            m_score2 = m_score2 >= 0 ? m_score2 : 0;
+
             if (m_score1 == m_score2)
             {
                 return GetEqualScore();
@@ -83,34 +87,20 @@ namespace Tennis
 
         private string GetOtherScore()
         {
-            string scoreName1 = ConvertScorePointToName(m_score1);
-            string scoreName2 = ConvertScorePointToName(m_score2);
+            string scoreName1 = GetScoreName(m_score1);
+            string scoreName2 = GetScoreName(m_score2);
             return $"{scoreName1}-{scoreName2}";
         }
 
-        private string ConvertScorePointToName(int point)
+        private string GetScoreName(int point)
         {
-            string scoreName = "";
-            switch (point)
+            string[] scoreNameArray = new string[] { "Love", "Fifteen", "Thirty", "Forty" };
+            if (point >= 0 && point < scoreNameArray.Length)
             {
-                case 0:
-                    scoreName = "Love";
-                    break;
-
-                case 1:
-                    scoreName = "Fifteen";
-                    break;
-
-                case 2:
-                    scoreName = "Thirty";
-                    break;
-
-                case 3:
-                    scoreName = "Forty";
-                    break;
+                return scoreNameArray[point];
             }
 
-            return scoreName;
+            return string.Empty;
         }
     }
 }
