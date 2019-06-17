@@ -59,7 +59,7 @@ namespace Tennis
 
         private string GetGamePointScore()
         {
-            var leader = m_score1 > m_score2 ? "player1" : "player2";
+            string leader = GetLeadingPlayer();
 
             var scoreGap = Math.Abs(m_score1 - m_score2);
 
@@ -72,6 +72,11 @@ namespace Tennis
                 return $"Advantage {leader}";
 
             }
+        }
+
+        private string GetLeadingPlayer()
+        {
+            return m_score1 > m_score2 ? "player1" : "player2";
         }
 
         private string GetEqualScore(int point)
