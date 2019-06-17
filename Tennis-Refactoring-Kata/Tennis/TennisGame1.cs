@@ -9,6 +9,20 @@ namespace Tennis
         private int m_score2 = 0;
         private string player1Name;
         private string player2Name;
+        private readonly Dictionary<int, string> scoreEqualNameDic = new Dictionary<int, string>()
+        {
+                { 0, "Love-All" },
+                { 1, "Fifteen-All" },
+                { 2, "Thirty-All" },
+        };
+
+        private readonly Dictionary<int, string> scoreNormalNameDic = new Dictionary<int, string>()
+        {
+                { 0, "Love" },
+                { 1, "Fifteen" },
+                { 2, "Thirty" },
+                { 3, "Forty" },
+        };
 
         public TennisGame1(string player1Name, string player2Name)
         {
@@ -62,14 +76,7 @@ namespace Tennis
 
         private string GetEqualScore(int point)
         {
-            var scoreNameDic = new Dictionary<int, string>()
-            {
-                { 0, "Love-All" },
-                { 1, "Fifteen-All" },
-                { 2, "Thirty-All" },
-            };
-
-            return scoreNameDic.ContainsKey(point) ? scoreNameDic[point] : "Deuce";
+            return scoreEqualNameDic.ContainsKey(point) ? scoreEqualNameDic[point] : "Deuce";
         }
 
         private string GetOtherScore()
@@ -81,15 +88,7 @@ namespace Tennis
 
         private string GetScoreName(int point)
         {
-            var scoreNameDic = new Dictionary<int, string>()
-            {
-                { 0, "Love" },
-                { 1, "Fifteen" },
-                { 2, "Thirty" },
-                { 3, "Forty" },
-            };
-
-            return scoreNameDic.ContainsKey(point) ? scoreNameDic[point] : string.Empty;
+            return scoreNormalNameDic.ContainsKey(point) ? scoreNormalNameDic[point] : string.Empty;
         }
     }
 }
