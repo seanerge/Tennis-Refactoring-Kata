@@ -59,18 +59,15 @@ namespace Tennis
 
         private string GetGamePointScore()
         {
-            string leader = GetLeadingPlayer();
-
             var scoreGap = Math.Abs(m_score1 - m_score2);
 
             if (scoreGap >= 2)
             {
-                return $"Win for {leader}";
+                return $"Win for {GetLeadingPlayer()}";
             }
             else
             {
-                return $"Advantage {leader}";
-
+                return $"Advantage {GetLeadingPlayer()}";
             }
         }
 
