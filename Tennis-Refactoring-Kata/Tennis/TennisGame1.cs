@@ -94,13 +94,15 @@ namespace Tennis
 
         private string GetScoreName(int point)
         {
-            string[] scoreNameArray = new string[] { "Love", "Fifteen", "Thirty", "Forty" };
-            if (point >= 0 && point < scoreNameArray.Length)
+            var scoreNameDic = new Dictionary<int, string>()
             {
-                return scoreNameArray[point];
-            }
+                { 0, "Love" },
+                { 1, "Fifteen" },
+                { 2, "Thirty" },
+                { 3, "Forty" },
+            };
 
-            return string.Empty;
+            return scoreNameDic.ContainsKey(point) ? scoreNameDic[point] : string.Empty;
         }
     }
 }
