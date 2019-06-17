@@ -33,21 +33,21 @@ namespace Tennis
         public void WonPoint(string playerName)
         {
             if (playerName == "player1")
-                player1Point ++;
+                this.player1Point ++;
             else
-                player2Point ++;
+                this.player2Point ++;
         }
 
         public string GetScore()
         {
-            player1Point = player1Point >= 0 ? player1Point : 0;
-            player2Point = player2Point >= 0 ? player2Point : 0;
+            this.player1Point = this.player1Point >= 0 ? this.player1Point : 0;
+            this.player2Point = this.player2Point >= 0 ? this.player2Point : 0;
 
-            if (player1Point == player2Point)
+            if (this.player1Point == this.player2Point)
             {
-                return GetEqualScore(player1Point);
+                return GetEqualScore(this.player1Point);
             }
-            else if (player1Point >= 4 || player2Point >= 4)
+            else if (this.player1Point >= 4 || this.player2Point >= 4)
             {
                 return GetGamePointScore();
             }
@@ -59,7 +59,7 @@ namespace Tennis
 
         private string GetGamePointScore()
         {
-            var scoreGap = Math.Abs(player1Point - player2Point);
+            var scoreGap = Math.Abs(this.player1Point - this.player2Point);
 
             if (scoreGap >= 2)
             {
@@ -73,7 +73,7 @@ namespace Tennis
 
         private string GetLeadingPlayer()
         {
-            return player1Point > player2Point ? "player1" : "player2";
+            return this.player1Point > this.player2Point ? "player1" : "player2";
         }
 
         private string GetEqualScore(int point)
@@ -83,8 +83,8 @@ namespace Tennis
 
         private string GetOtherScore()
         {
-            string scoreName1 = GetScoreName(player1Point);
-            string scoreName2 = GetScoreName(player2Point);
+            string scoreName1 = GetScoreName(this.player1Point);
+            string scoreName2 = GetScoreName(this.player2Point);
             return $"{scoreName1}-{scoreName2}";
         }
 
