@@ -3,12 +3,21 @@ using System.Collections.Generic;
 
 namespace Tennis
 {
+    public enum GameStatus
+    {
+        Tie,
+        Normal,
+        GamePoint
+
+    }
+
     internal class TennisGame1 : ITennisGame
     {
         private int player1Point = 0;
         private int player2Point = 0;
         private string player1Name;
         private string player2Name;
+
         private readonly Dictionary<int, string> scoreEqualNameDic = new Dictionary<int, string>()
         {
                 { 0, "Love-All" },
@@ -33,27 +42,41 @@ namespace Tennis
         public void WonPoint(string playerName)
         {
             if (playerName == "player1")
-                this.player1Point ++;
+                this.player1Point++;
             else
-                this.player2Point ++;
+                this.player2Point++;
         }
 
         public string GetScore()
         {
             this.player1Point = this.player1Point >= 0 ? this.player1Point : 0;
             this.player2Point = this.player2Point >= 0 ? this.player2Point : 0;
+            var currentStatus = GetCurrentStatus();
+            switch (currentStatus)
+            {
+                case GameStatus.Tie:
+                    return GetEqualScore();
+                case GameStatus.GamePoint:
+                    return GetGamePointScore();
+                case GameStatus.Normal:
+                default:
+                    return GetOtherScore();
+            }
+        }
 
+        private GameStatus GetCurrentStatus()
+        {
             if (this.player1Point == this.player2Point)
             {
-                return GetEqualScore(this.player1Point);
+                return GameStatus.Tie;
             }
             else if (this.player1Point >= 4 || this.player2Point >= 4)
             {
-                return GetGamePointScore();
+                return GameStatus.GamePoint;
             }
             else
             {
-                return GetOtherScore();
+                return GameStatus.Normal;
             }
         }
 
@@ -76,9 +99,9 @@ namespace Tennis
             return this.player1Point > this.player2Point ? "player1" : "player2";
         }
 
-        private string GetEqualScore(int point)
+        private string GetEqualScore()
         {
-            return scoreEqualNameDic.ContainsKey(point) ? scoreEqualNameDic[point] : "Deuce";
+            return scoreEqualNameDic.ContainsKey(this.player1Point) ? scoreEqualNameDic[this.player1Point] : "Deuce";
         }
 
         private string GetOtherScore()
