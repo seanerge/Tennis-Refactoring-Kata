@@ -5,8 +5,8 @@ namespace Tennis
 {
     internal class TennisGame1 : ITennisGame
     {
-        private int m_score1 = 0;
-        private int m_score2 = 0;
+        private int player1Point = 0;
+        private int player2Point = 0;
         private string player1Name;
         private string player2Name;
         private readonly Dictionary<int, string> scoreEqualNameDic = new Dictionary<int, string>()
@@ -33,21 +33,21 @@ namespace Tennis
         public void WonPoint(string playerName)
         {
             if (playerName == "player1")
-                m_score1 += 1;
+                player1Point ++;
             else
-                m_score2 += 1;
+                player2Point ++;
         }
 
         public string GetScore()
         {
-            m_score1 = m_score1 >= 0 ? m_score1 : 0;
-            m_score2 = m_score2 >= 0 ? m_score2 : 0;
+            player1Point = player1Point >= 0 ? player1Point : 0;
+            player2Point = player2Point >= 0 ? player2Point : 0;
 
-            if (m_score1 == m_score2)
+            if (player1Point == player2Point)
             {
-                return GetEqualScore(m_score1);
+                return GetEqualScore(player1Point);
             }
-            else if (m_score1 >= 4 || m_score2 >= 4)
+            else if (player1Point >= 4 || player2Point >= 4)
             {
                 return GetGamePointScore();
             }
@@ -59,7 +59,7 @@ namespace Tennis
 
         private string GetGamePointScore()
         {
-            var scoreGap = Math.Abs(m_score1 - m_score2);
+            var scoreGap = Math.Abs(player1Point - player2Point);
 
             if (scoreGap >= 2)
             {
@@ -73,7 +73,7 @@ namespace Tennis
 
         private string GetLeadingPlayer()
         {
-            return m_score1 > m_score2 ? "player1" : "player2";
+            return player1Point > player2Point ? "player1" : "player2";
         }
 
         private string GetEqualScore(int point)
@@ -83,8 +83,8 @@ namespace Tennis
 
         private string GetOtherScore()
         {
-            string scoreName1 = GetScoreName(m_score1);
-            string scoreName2 = GetScoreName(m_score2);
+            string scoreName1 = GetScoreName(player1Point);
+            string scoreName2 = GetScoreName(player2Point);
             return $"{scoreName1}-{scoreName2}";
         }
 
