@@ -31,7 +31,7 @@ namespace Tennis
 
             if (m_score1 == m_score2)
             {
-                return GetEqualScore();
+                return GetEqualScore(m_score1);
             }
             else if (m_score1 >= 4 || m_score2 >= 4)
             {
@@ -60,29 +60,16 @@ namespace Tennis
             }
         }
 
-        private string GetEqualScore()
+        private string GetEqualScore(int point)
         {
-            string score = "";
-            switch (m_score1)
+            var scoreNameDic = new Dictionary<int, string>()
             {
-                case 0:
-                    score = "Love-All";
-                    break;
+                { 0, "Love-All" },
+                { 1, "Fifteen-All" },
+                { 2, "Thirty-All" },
+            };
 
-                case 1:
-                    score = "Fifteen-All";
-                    break;
-
-                case 2:
-                    score = "Thirty-All";
-                    break;
-
-                default:
-                    score = "Deuce";
-                    break;
-            }
-
-            return score;
+            return scoreNameDic.ContainsKey(point) ? scoreNameDic[point] : "Deuce";
         }
 
         private string GetOtherScore()
