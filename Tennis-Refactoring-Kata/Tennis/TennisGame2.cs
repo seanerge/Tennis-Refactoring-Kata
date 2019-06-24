@@ -22,12 +22,7 @@
             var score = "";
             if (p1point == p2point && p1point < 3)
             {
-                if (p1point == 0)
-                    score = "Love";
-                if (p1point == 1)
-                    score = "Fifteen";
-                if (p1point == 2)
-                    score = "Thirty";
+                score = GetScoreName(p1point);
                 score += "-All";
             }
             if (p1point == p2point && p1point > 2)
@@ -35,25 +30,13 @@
 
             if (p1point > 0 && p2point == 0)
             {
-                if (p1point == 1)
-                    p1res = "Fifteen";
-                if (p1point == 2)
-                    p1res = "Thirty";
-                if (p1point == 3)
-                    p1res = "Forty";
-
+                p1res = GetScoreName(p1point);
                 p2res = "Love";
                 score = p1res + "-" + p2res;
             }
             if (p2point > 0 && p1point == 0)
             {
-                if (p2point == 1)
-                    p2res = "Fifteen";
-                if (p2point == 2)
-                    p2res = "Thirty";
-                if (p2point == 3)
-                    p2res = "Forty";
-
+                p2res = GetScoreName(p2point);
                 p1res = "Love";
                 score = p1res + "-" + p2res;
             }
@@ -104,20 +87,19 @@
             return score;
         }
 
-        public void SetP1Score(int number)
+        private string GetScoreName(int point)
         {
-            for (int i = 0; i < number; i++)
-            {
-                P1Score();
-            }
-        }
+            var scoreName = "";
+            if (point == 0)
+                scoreName = "Love";
+            if (point == 1)
+                scoreName = "Fifteen";
+            if (point == 2)
+                scoreName = "Thirty";
+            if (point == 3)
+                scoreName = "Forty";
 
-        public void SetP2Score(int number)
-        {
-            for (var i = 0; i < number; i++)
-            {
-                P2Score();
-            }
+            return scoreName;
         }
 
         private void P1Score()

@@ -49,19 +49,19 @@ namespace Tennis
             this.expectedScore = expectedScore;
         }
 
+        //[Test]
+        //public void CheckTennisGame1()
+        //{
+        //    var game = new TennisGame1("player1", "player2");
+        //    CheckAllScores(game);
+        //}
+
         [Test]
-        public void CheckTennisGame1()
+        public void CheckTennisGame2()
         {
-            var game = new TennisGame1("player1", "player2");
+            var game = new TennisGame2("player1", "player2");
             CheckAllScores(game);
         }
-
-        ////[Test]
-        ////public void CheckTennisGame2()
-        ////{
-        ////    var game = new TennisGame2("player1", "player2");
-        ////    CheckAllScores(game);
-        ////}
 
         ////[Test]
         ////public void CheckTennisGame3()
