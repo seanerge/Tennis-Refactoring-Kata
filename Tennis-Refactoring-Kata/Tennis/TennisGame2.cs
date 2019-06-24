@@ -19,19 +19,22 @@
 
         public string GetScore()
         {
-            var score = GetDrawScore();
+            var score = "";
 
+            if (p1point == p2point)
+            {
+                score = GetDrawScore();
+            }
             if (p1point > 0 && p2point == 0)
             {
                 score = GetNormalGameScore();
             }
-            if (p1point > p2point && p1point < 4)
+            if (p2point > 0 && p1point == 0)
             {
                 score = GetNormalGameScore();
             }
 
-
-            if (p2point > 0 && p1point == 0)
+            if (p1point > p2point && p1point < 4)
             {
                 score = GetNormalGameScore();
             }
@@ -40,7 +43,6 @@
             {
                 score = GetNormalGameScore();
             }
-
 
             if (IsP1Advantage())
             {
@@ -87,16 +89,13 @@
         {
             var score = string.Empty;
 
-            if (p1point == p2point)
+            if (p1point < 3)
             {
-                if (p1point < 3)
-                {
-                    score = GetScoreName(p1point);
-                    score += "-All";
-                }
-                if (p1point > 2)
-                    score = "Deuce";
+                score = GetScoreName(p1point);
+                score += "-All";
             }
+            if (p1point > 2)
+                score = "Deuce";
 
             return score;
         }
