@@ -21,7 +21,7 @@
         {
             var score = "";
 
-            if (p1point == p2point)
+            if (IsDrawCase())
             {
                 score = GetDrawScore();
             }
@@ -50,6 +50,11 @@
                 score = "Win for player2";
             }
             return score;
+        }
+
+        private bool IsDrawCase()
+        {
+            return p1point == p2point;
         }
 
         private bool IsNormalCase()
