@@ -25,21 +25,8 @@
             {
                 score = GetDrawScore();
             }
-            if (p1point > 0 && p2point == 0)
-            {
-                score = GetNormalGameScore();
-            }
-            if (p2point > 0 && p1point == 0)
-            {
-                score = GetNormalGameScore();
-            }
 
-            if (p1point > p2point && p1point < 4)
-            {
-                score = GetNormalGameScore();
-            }
-
-            if (p2point > p1point && p2point < 4)
+            if (IsNormalCase())
             {
                 score = GetNormalGameScore();
             }
@@ -63,6 +50,14 @@
                 score = "Win for player2";
             }
             return score;
+        }
+
+        private bool IsNormalCase()
+        {
+            return (p1point > 0 && p2point == 0)
+                            || (p2point > 0 && p1point == 0)
+                            || (p1point > p2point && p1point < 4)
+                            || (p2point > p1point && p2point < 4);
         }
 
         private bool IsP2Advantage()
