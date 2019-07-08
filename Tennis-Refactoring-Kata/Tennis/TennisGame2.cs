@@ -5,8 +5,6 @@
         private int p1point;
         private int p2point;
 
-        private string p1res = "";
-        private string p2res = "";
         private string player1Name;
         private string player2Name;
 
@@ -41,13 +39,21 @@
                 score = "Advantage player2";
             }
 
-            if (IsP1Winner())
+            if (IsP1Winner() || IsP2Winner())
             {
-                score = "Win for player1";
-            }
-            if (IsP2Winner())
-            {
-                score = "Win for player2";
+                var winner = string.Empty;
+
+                if (IsP1Winner())
+                {
+                    winner = "player1";
+                }
+
+                if (IsP2Winner())
+                {
+                    winner = "player2";
+                }
+
+                score = $"Win for {winner}";
             }
             return score;
         }
@@ -77,12 +83,12 @@
 
         private bool IsP2Winner()
         {
-            return p2point >= 4 && p1point >= 0 && (p2point - p1point) >= 2;
+            return p2point >= 4 && (p2point - p1point) >= 2;
         }
 
         private bool IsP1Winner()
         {
-            return p1point >= 4 && p2point >= 0 && (p1point - p2point) >= 2;
+            return p1point >= 4 && (p1point - p2point) >= 2;
         }
 
         private string GetDrawScore()
@@ -102,11 +108,7 @@
 
         private string GetNormalGameScore()
         {
-            string score;
-            p1res = GetScoreName(p1point);
-            p2res = GetScoreName(p2point);
-            score = p1res + "-" + p2res;
-            return score;
+            return GetScoreName(p1point) + "-" + GetScoreName(p2point);
         }
 
         private string GetScoreName(int point)
