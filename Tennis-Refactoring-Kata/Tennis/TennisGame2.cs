@@ -32,7 +32,7 @@ namespace Tennis
 
                 if (p1.Point > p2.Point)
                 {
-                    if (p2.Point >= 3)
+                    if (IsAdvantage())
                     {
                         score = $"Advantage {GetLeaderName()}";
                     }
@@ -44,7 +44,7 @@ namespace Tennis
                 }
                 else
                 {
-                    if (p1.Point >= 3)
+                    if (IsAdvantage())
                     {
                         score = $"Advantage {GetLeaderName()}";
                     }
@@ -62,6 +62,11 @@ namespace Tennis
         private string GetLeaderName()
         {
             return p1.Point > p2.Point ? p1.Name : p2.Name;
+        }
+
+        private bool IsAdvantage()
+        {
+            return p1.Point >= 3 && p2.Point >= 3;
         }
 
         private bool IsDrawCase()
