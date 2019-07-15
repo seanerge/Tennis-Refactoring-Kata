@@ -30,33 +30,34 @@ namespace Tennis
                     score = GetNormalGameScore();
                 }
 
-                if (p1.Point > p2.Point)
+                if (IsAdvantage())
                 {
-                    if (IsAdvantage())
-                    {
-                        score = $"Advantage {GetLeaderName()}";
-                    }
-
-                    if (p1.Point >= 4 && Math.Abs(p1.Point - p2.Point) >= 2)
-                    {
-                        score = $"Win for {GetLeaderName()}";
-                    }
+                    score = $"Advantage {GetLeaderName()}";
                 }
-                else
+
+                if (IsWin())
                 {
-                    if (IsAdvantage())
-                    {
-                        score = $"Advantage {GetLeaderName()}";
-                    }
-
-                    if (p2.Point >= 4 && Math.Abs(p2.Point - p1.Point) >= 2)
-                    {
-                        score = $"Win for {GetLeaderName()}";
-                    }
+                    score = $"Win for {GetLeaderName()}";
                 }
+
             }
 
             return score;
+        }
+
+        private bool IsWin()
+        {
+            return IsGamePoint() && IsScoreDiffOver2();
+        }
+
+        private bool IsScoreDiffOver2()
+        {
+            return Math.Abs(p1.Point - p2.Point) >= 2;
+        }
+
+        private bool IsGamePoint()
+        {
+            return (p1.Point >= 4 || p2.Point >= 4);
         }
 
         private string GetLeaderName()
