@@ -34,30 +34,34 @@ namespace Tennis
                 {
                     if (p2.Point >= 3)
                     {
-                        score = "Advantage player1";
+                        score = $"Advantage {GetLeaderName()}";
                     }
 
                     if (p1.Point >= 4 && Math.Abs(p1.Point - p2.Point) >= 2)
                     {
-                        score = $"Win for {p1.Name}";
+                        score = $"Win for {GetLeaderName()}";
                     }
                 }
-
-                if (p2.Point > p1.Point)
+                else
                 {
                     if (p1.Point >= 3)
                     {
-                        score = "Advantage player2";
+                        score = $"Advantage {GetLeaderName()}";
                     }
 
                     if (p2.Point >= 4 && Math.Abs(p2.Point - p1.Point) >= 2)
                     {
-                        score = $"Win for {p2.Name}";
+                        score = $"Win for {GetLeaderName()}";
                     }
-                } 
+                }
             }
 
             return score;
+        }
+
+        private string GetLeaderName()
+        {
+            return p1.Point > p2.Point ? p1.Name : p2.Name;
         }
 
         private bool IsDrawCase()
