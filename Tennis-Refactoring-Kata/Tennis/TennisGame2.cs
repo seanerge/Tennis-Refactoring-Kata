@@ -20,34 +20,33 @@ namespace Tennis
             {
                 score = GetDrawScore();
             }
-            else
-            {
-                if ((p1.Point > 0 && p2.Point == 0)
+
+            if (!IsDrawCase() && 
+                ((p1.Point > 0 && p2.Point == 0)
                     || (p2.Point > 0 && p1.Point == 0)
                     || (p1.Point > p2.Point && p1.Point < 4)
-                    || (p2.Point > p1.Point && p2.Point < 4))
-                {
-                    score = GetNormalGameScore();
-                }
-
-                if (IsAdvantage())
-                {
-                    score = $"Advantage {GetLeaderName()}";
-                }
-
-                if (IsWin())
-                {
-                    score = $"Win for {GetLeaderName()}";
-                }
-
+                    || (p2.Point > p1.Point && p2.Point < 4)))
+            {
+                score = GetNormalGameScore();
             }
+
+            if (IsAdvantage())
+            {
+                score = $"Advantage {GetLeaderName()}";
+            }
+
+            if (IsWin())
+            {
+                score = $"Win for {GetLeaderName()}";
+            }
+
 
             return score;
         }
 
         private bool IsWin()
         {
-            return IsGamePoint() && IsScoreDiffOver2();
+            return !IsDrawCase() && IsGamePoint() && IsScoreDiffOver2();
         }
 
         private bool IsScoreDiffOver2()
@@ -67,7 +66,7 @@ namespace Tennis
 
         private bool IsAdvantage()
         {
-            return p1.Point >= 3 && p2.Point >= 3;
+            return !IsDrawCase() && p1.Point >= 3 && p2.Point >= 3;
         }
 
         private bool IsDrawCase()
